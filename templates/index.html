@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block title %} Index {% endblock %}
 {% block head %}
- {{ super() }}
+    {{ super() }}
     <style>
         h1{ color: rebeccapurple}
     </style>
 {% endblock %}
 {% block body %}
-<h1>Hello!</h1>
-<a href="{{ url_for('get_comments')}}">View Comments</a>
+    <h1>Hello!</h1>
+    <a href="{{ url_for('get_comments')}}">View Comments</a>
+    <a href="{{ url_for('register')}}">Register</a>
 {% endblock %}
 
