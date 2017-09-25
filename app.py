@@ -1,10 +1,18 @@
+import os
 from flask import Flask, request, make_response, render_template, session, redirect, url_for
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
 from forms import RegisterForm
-from models import User
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='AJMSFNDKSFDLANSFDLN'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 comments = ['cool site','great app','cool stuff']
 
@@ -51,3 +59,4 @@ def account():
 
 if __name__ == '__main__':
     app.run(port=5000,debug=True)
+
